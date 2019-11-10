@@ -45,6 +45,16 @@ public interface ResourceConstants {
     String SYSUI_PACKAGE = "com.android.systemui";
 
     /**
+     * Package name for digital wellbeing.
+     */
+    String WELLBEING_PACKAGE = "com.google.android.apps.wellbeing";
+
+    /**
+     * Package name for Google play service.
+     */
+    String GMS_PACKAGE = "com.google.android.gms";
+
+    /**
      * Name of the system resource for icon mask
      */
     String CONFIG_ICON_MASK = "config_icon_mask";
@@ -65,6 +75,8 @@ public interface ResourceConstants {
     String OVERLAY_CATEGORY_ICON_SYSUI = "android.theme.customization.icon_pack.systemui";
     String OVERLAY_CATEGORY_ICON_LAUNCHER = "android.theme.customization.icon_pack.launcher";
     String OVERLAY_CATEGORY_ICON_THEMEPICKER = "android.theme.customization.icon_pack.themepicker";
+    String OVERLAY_CATEGORY_ICON_WELLBEING = "android.theme.customization.icon_pack.wellbeing";
+    String OVERLAY_CATEGORY_ICON_GMS = "android.theme.customization.icon_pack.gms";
 
     /**
      * Global Android theme category (default theme prebundled with the OS)
@@ -96,7 +108,7 @@ public interface ResourceConstants {
     static String[] getPackagesToOverlay(Context context) {
         if (sTargetPackages.isEmpty()) {
             sTargetPackages.addAll(Arrays.asList(ANDROID_PACKAGE, SETTINGS_PACKAGE,
-                    SYSUI_PACKAGE));
+                    SYSUI_PACKAGE, WELLBEING_PACKAGE, GMS_PACKAGE));
             sTargetPackages.add(getLauncherPackage(context));
             sTargetPackages.add(context.getPackageName());
         }

@@ -26,8 +26,12 @@ import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_SETTINGS;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_SYSUI;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_THEMEPICKER;
+import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_WELLBEING;
+import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_GMS;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SHAPE;
 import static com.android.customization.model.ResourceConstants.SYSUI_PACKAGE;
+import static com.android.customization.model.ResourceConstants.WELLBEING_PACKAGE;
+import static com.android.customization.model.ResourceConstants.GMS_PACKAGE;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -80,6 +84,8 @@ public class DefaultThemeProvider extends ResourcesApkProvider implements ThemeB
     private static final String SHAPE_PREFIX = "theme_overlay_shape_";
     private static final String ICON_ANDROID_PREFIX = "theme_overlay_icon_android_";
     private static final String ICON_LAUNCHER_PREFIX = "theme_overlay_icon_launcher_";
+    private static final String ICON_WELLBEING_PREFIX = "theme_overlay_icon_wellbeing_";
+    private static final String ICON_GMS_PREFIX = "theme_overlay_icon_gms_";
     private static final String ICON_SETTINGS_PREFIX = "theme_overlay_icon_settings_";
     private static final String ICON_SYSUI_PREFIX = "theme_overlay_icon_sysui_";
     private static final String WALLPAPER_PREFIX = "theme_wallpaper_";
@@ -199,6 +205,24 @@ public class DefaultThemeProvider extends ResourcesApkProvider implements ThemeB
             String iconLauncherOverlayPackage = getOverlayPackage(ICON_LAUNCHER_PREFIX,
                     themeName);
             mOverlayProvider.addNoPreviewIconOverlay(builder, iconLauncherOverlayPackage);
+
+            try {
+                String iconWellbeingOverlayPackage = getOverlayPackage(ICON_WELLBEING_PREFIX,
+                        themeName);
+                mOverlayProvider.addNoPreviewIconOverlay(builder, iconWellbeingOverlayPackage);
+            } catch (NotFoundException e) {
+                Log.d(TAG,
+                    "Didn't find Wellbeing icons overlay for theme, skipping");
+            }
+
+            try {
+                String iconGmsOverlayPackage = getOverlayPackage(ICON_GMS_PREFIX,
+                        themeName);
+                mOverlayProvider.addNoPreviewIconOverlay(builder, iconGmsOverlayPackage);
+            } catch (NotFoundException e) {
+                Log.d(TAG,
+                    "Didn't find Gms icons overlay for theme, skipping");
+            }
 
             String iconSettingsOverlayPackage = getOverlayPackage(ICON_SETTINGS_PREFIX,
                     themeName);
@@ -473,6 +497,10 @@ public class DefaultThemeProvider extends ResourcesApkProvider implements ThemeB
                     customPackages.get(OVERLAY_CATEGORY_ICON_SETTINGS));
             mOverlayProvider.addNoPreviewIconOverlay(builder,
                     customPackages.get(OVERLAY_CATEGORY_ICON_LAUNCHER));
+            mOverlayProvider.addNoPreviewIconOverlay(builder,
+                    customPackages.get(OVERLAY_CATEGORY_ICON_WELLBEING));
+            mOverlayProvider.addNoPreviewIconOverlay(builder,
+                    customPackages.get(OVERLAY_CATEGORY_ICON_GMS));        
             mOverlayProvider.addNoPreviewIconOverlay(builder,
                     customPackages.get(OVERLAY_CATEGORY_ICON_THEMEPICKER));
             if (theme.has(THEME_TITLE_FIELD)) {
