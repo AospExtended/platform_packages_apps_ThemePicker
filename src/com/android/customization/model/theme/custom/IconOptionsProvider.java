@@ -22,6 +22,8 @@ import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_SETTINGS;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_SYSUI;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_THEMEPICKER;
+import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_WELLBEING;
+import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_GMS;
 
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -53,6 +55,8 @@ public class IconOptionsProvider extends ThemeComponentOptionProvider<IconOption
     private final List<String> mSettingsIconsOverlayPackages = new ArrayList<>();
     private final List<String> mLauncherIconsOverlayPackages = new ArrayList<>();
     private final List<String> mThemePickerIconsOverlayPackages = new ArrayList<>();
+    private final List<String> mWellbeingPickerIconsOverlayPackages = new ArrayList<>();
+    private final List<String> mGmsPickerIconsOverlayPackages = new ArrayList<>();
 
     public IconOptionsProvider(Context context, OverlayManagerCompat manager) {
         super(context, manager, OVERLAY_CATEGORY_ICON_ANDROID);
@@ -65,6 +69,11 @@ public class IconOptionsProvider extends ThemeComponentOptionProvider<IconOption
                 OVERLAY_CATEGORY_ICON_LAUNCHER, UserHandle.myUserId(), targetPackages));
         mThemePickerIconsOverlayPackages.addAll(manager.getOverlayPackagesForCategory(
                 OVERLAY_CATEGORY_ICON_THEMEPICKER, UserHandle.myUserId(), targetPackages));
+        mWellbeingPickerIconsOverlayPackages.addAll(manager.getOverlayPackagesForCategory(
+                OVERLAY_CATEGORY_ICON_WELLBEING, UserHandle.myUserId(), targetPackages));
+        mGmsPickerIconsOverlayPackages.addAll(manager.getOverlayPackagesForCategory(
+                OVERLAY_CATEGORY_ICON_GMS, UserHandle.myUserId(), targetPackages));                
+
     }
 
     @Override
@@ -99,6 +108,14 @@ public class IconOptionsProvider extends ThemeComponentOptionProvider<IconOption
 
         for (String overlayPackage : mThemePickerIconsOverlayPackages) {
             addOrUpdateOption(optionsByPrefix, overlayPackage, OVERLAY_CATEGORY_ICON_THEMEPICKER);
+        }
+        
+        for (String overlayPackage : mWellbeingPickerIconsOverlayPackages) {
+            addOrUpdateOption(optionsByPrefix, overlayPackage, OVERLAY_CATEGORY_ICON_WELLBEING);
+        }
+
+        for (String overlayPackage : mGmsPickerIconsOverlayPackages) {
+            addOrUpdateOption(optionsByPrefix, overlayPackage, OVERLAY_CATEGORY_ICON_GMS);
         }
 
         for (IconOption option : optionsByPrefix.values()) {
@@ -147,6 +164,8 @@ public class IconOptionsProvider extends ThemeComponentOptionProvider<IconOption
         option.addOverlayPackage(OVERLAY_CATEGORY_ICON_SETTINGS, null);
         option.addOverlayPackage(OVERLAY_CATEGORY_ICON_LAUNCHER, null);
         option.addOverlayPackage(OVERLAY_CATEGORY_ICON_THEMEPICKER, null);
+        option.addOverlayPackage(OVERLAY_CATEGORY_ICON_WELLBEING, null);
+        option.addOverlayPackage(OVERLAY_CATEGORY_ICON_GMS, null);
         mOptions.add(option);
     }
 
