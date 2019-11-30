@@ -16,7 +16,9 @@
 package com.android.customization.picker;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -117,6 +119,10 @@ public class CustomizationPickerActivity extends FragmentActivity implements Wal
         } else {
             setContentView(R.layout.activity_customization_picker_main);
             setUpBottomNavView();
+
+            PackageManager p = getPackageManager();
+            ComponentName componentName = new ComponentName(this, com.android.customization.picker.CustomizationPickerApplication.class);
+            p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
             FragmentManager fm = getSupportFragmentManager();
             Fragment fragment = fm.findFragmentById(R.id.fragment_container);
