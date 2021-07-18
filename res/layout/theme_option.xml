@@ -47,7 +47,7 @@
             android:layout_height="@dimen/theme_option_icon_sample_height"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:tint="?android:colorForeground"/>
+            android:tint="@color/theme_preview_color_icons_background"/>
         <ImageView
             android:id="@+id/theme_option_shape"
             android:layout_width="@dimen/theme_option_shape_sample_width"
@@ -69,6 +69,7 @@
             android:letterSpacing=".2"
             android:text="@string/theme_font_example"
             android:textAlignment="center"
+            android:textColor="@color/theme_preview_color_icons_title_color"
             android:textSize="@dimen/theme_option_font_text_size" />
     </RelativeLayout>
 </LinearLayout>

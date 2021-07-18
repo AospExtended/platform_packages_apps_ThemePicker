@@ -90,12 +90,12 @@ public interface ResourceConstants {
     };
 
     ArrayList<String> sTargetPackages = new ArrayList<>();
-    String ACCENT_COLOR_LIGHT_NAME = "accent_device_default_light";
+    String ACCENT_COLOR_LIGHT_NAME = "accent_device_default_dark";
     String ACCENT_COLOR_DARK_NAME = "accent_device_default_dark";
 
-    String STYLE_PRIMARY_COLOR_LIGHT_BACKGROUND = "primary_material_light";
+    String STYLE_PRIMARY_COLOR_LIGHT_BACKGROUND = "primary_material_dark";
     String STYLE_PRIMARY_COLOR_DARK_BACKGROUND = "primary_material_dark";
-    String STYLE_BACKGROUND_COLOR_LIGHT_NAME = "primary_device_default_light";
+    String STYLE_BACKGROUND_COLOR_LIGHT_NAME = "primary_device_default_dark";
     String STYLE_BACKGROUND_COLOR_DARK_NAME = "primary_device_default_dark";
     String STYLE_UI_ROUNDNESS_NAME = "config_dialogCornerRadius";
 
